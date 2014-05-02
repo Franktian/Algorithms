@@ -3,17 +3,30 @@ def karatuba (x, y):
     ''' Python implementation of Karatuba algorithm
     @params: x, y are n digits integers
     '''
-    n = len(x)
+    lenX = len(x)
+    lenY = len(y)
     
-    if (n == 1):
+    if (lenX == lenY and lenX == 1):
         return int(x) * int(y)
     
-    #firstpart, secondpart = string[:len(string)/2], string[len(string)/2:]
-    a, b = x[:n/2], x[n/2:]
-    c, d = y[:n/2], y[n/2:]
-    return math.pow(10, n) * karatuba(a, c) + math.pow(10, n/2) * (karatuba(a, d) + karatuba(b, c)) + karatuba(b, d)
+    if (lenX > lenY):
+        y = "0" + y
+        half = int(lenX/2)
+        leng = lenX
+    elif (lenX < lenY):
+        x = "0" + x
+        half = int(lenY/2)
+        leng = lenY
+    else:
+        half = int(lenX/2)
+        leng = lenX
+    
+    a, b = x[:half], x[half:]
+    c, d = y[:half], y[half:]
+    
+    return math.pow(10, 2*(leng - half)) * karatuba(a, c) + math.pow(10, leng - half) * (karatuba(a, d) + karatuba(b, c)) + karatuba(b, d)
     
 if __name__ == "__main__":
-    x = "56"
-    y = "12"
+    x = "543"
+    y = "123"
     print karatuba(x, y)
