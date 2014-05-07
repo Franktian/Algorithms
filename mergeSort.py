@@ -1,47 +1,66 @@
-def mergeSort(lst):
-    '''
-    Python implementation of recursive merge sort
-    '''
-    print "Splitting"
-    print lst
-    if (len(lst) > 1):
-        half = int(len(lst) / 2)
-        left = lst[:half]
-        right = lst[half:]
-        
-        mergeSort(left)
-        mergeSort(right)
-        
-        i = 0
-        j = 0
-        k = 0
-        
-        while i<len(left) and j<len(right):
-            if left[i]<right[j]:
-                lst[k]=left[i]
+
+def mergeSort(alist):
+    print("Splitting ",alist)
+    if len(alist)>1:
+        mid = len(alist)//2
+        lefthalf = alist[:mid]
+        righthalf = alist[mid:]
+
+        mergeSort(lefthalf)
+        mergeSort(righthalf)
+
+        i=0
+        j=0
+        k=0
+        while i<len(lefthalf) and j<len(righthalf):
+            if lefthalf[i]<righthalf[j]:
+                alist[k]=lefthalf[i]
                 i=i+1
             else:
-                lst[k]=right[j]
+                alist[k]=righthalf[j]
                 j=j+1
             k=k+1
-            print lst
-        
-        while i<len(left):
-            lst[k]=left[i]
+
+        while i<len(lefthalf):
+            alist[k]=lefthalf[i]
             i=i+1
             k=k+1
-            print lst
 
-        while j<len(right):
-            lst[k]=right[j]
+        while j<len(righthalf):
+            alist[k]=righthalf[j]
             j=j+1
-            k=k+1  
-            print lst
+            k=k+1
+    print("Merging ",alist)
         
-    print "Merging"
-    print lst
 
+
+def merge (x, y):
+    '''
+    Merge two integer list by descending order
+    '''
+    l = 0
+    r = 0
+    i = 0
+    merged = []
+    
+    while l < len(x) and r < len(y):
+        if x[l] < y[r]:
+            merged.append(x[l])
+            l = l + 1
+        else:
+            merged.append(y[r])
+            r = r + 1
+    
+    while l < len(x):
+        merged.append(x[l])
+        l = l + 1
+    while r < len(y):
+        merged.append(y[r])
+        r = r + 1
+
+    
 if __name__ == "__main__":
-    alist = [54,26,93,17,77,31,44,55,20]
-    mergeSort(alist)
-    print alist
+    a = [1, 2, 3, 4, 5, 12]
+    b = [6, 7, 8, 9, 10, 100]
+    c = [10000, 967, 87, 91, 117, 819, 403, 597, 1201, 12090]
+    mergeSort(c)
