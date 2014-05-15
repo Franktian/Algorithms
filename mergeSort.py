@@ -1,6 +1,5 @@
 
 def mergeSort(alist):
-    print("Splitting ",alist)
     if len(alist)>1:
         mid = len(alist)//2
         lefthalf = alist[:mid]
@@ -10,7 +9,6 @@ def mergeSort(alist):
         mergeSort(righthalf)
         merge(lefthalf, righthalf, alist)
         
-    print("Merging ",alist)
         
 
 
@@ -21,13 +19,14 @@ def merge (x, y, merged):
     l = 0
     r = 0
     i = 0
-
+    global c
     
     while l < len(x) and r < len(y):
         if x[l] < y[r]:
             merged[i] = x[l]
             l = l + 1
         else:
+            c=c+len(x)-l #the maggic happens here
             merged[i] = y[r]
             r = r + 1
         i = i + 1
@@ -45,5 +44,8 @@ def merge (x, y, merged):
 if __name__ == "__main__":
     a = [1, 2, 3, 4, 5, 12]
     b = [6, 7, 8, 9, 10, 100]
-    c = [10000, 967, 87, 91, 117, 819, 403, 597, 1201, 12090]
-    mergeSort(c)
+    d = [5, 4, 3, 2, 1]
+    c = 0
+    mergeSort(d)
+    print c
+    print d
