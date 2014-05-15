@@ -55,7 +55,3 @@ if __name__ == "__main__":
     c = 0
     mergeSort(numbers)
     print "NLogN: " + str(c)
-
-#2412896071 - lines - correct
-#2430156032
-# 2407905288 - after test file passed
