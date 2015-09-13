@@ -1,8 +1,7 @@
 import math
 
 __author__ = "Tamaki Sakura"
-__copyright__ = "Copyright 2015, Shirasaki Academy"
-__license__ = "WTFPL"
+__license__ = "Public Domain"
 __contact__ = "tamaki.sakura in hotmail.com"
 
 class AADConesnsus():
@@ -10,12 +9,15 @@ class AADConesnsus():
     # Each Individual Instance of this object is
     # designed to be 1 process and can only running on 1 thread only.
 
-    def __init__(self, num_proc, my_pid, value, value_range):
+    def __init__(self, num_proc, my_pid, value, value_range, final_value_range):
         self.my_pid = pid
         self.val = float(value)
         self.rounds = 1
         
-        self.maxrounds = math.log(value_range / float(e)) / math.log(2) 
+        value_range = float(value_range)
+        final_value_range = float(final_value_range)
+
+        self.maxrounds = math.log(value_range / final_value_range)) / math.log(2) 
         self.num_proc = int(num_proc)
         self.maxerror = (self.num_proc - 1) / 4
 
@@ -93,6 +95,7 @@ class AADConesnsus():
             now_message_dict[(process, message)] = set()
         now_message_set = now_message_dict[(process, message)]
         now_message_set.add(process_send)
+        now_message_set.add(self.my_pid)
         return len(now_message_set)
 
     def _add_to_accept_message_stack(self, message, rd):
