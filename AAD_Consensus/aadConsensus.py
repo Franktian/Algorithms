@@ -93,14 +93,14 @@ class AADConesnsus():
         now_message_dict = self.message_dict[rd]
         if (now_message_dict.get((process, messgae)) is None):
             now_message_dict[(process, message)] = set()
+            now_message_dict[(process, message)].add(self.my_pid)
         now_message_set = now_message_dict[(process, message)]
         now_message_set.add(process_send)
-        now_message_set.add(self.my_pid)
         return len(now_message_set)
 
     def _add_to_accept_message_stack(self, message, rd):
         if (self.accept_message_dict.get(rd) is None):
-            self.accept_message_dict[rd] = []
+            self.accept_message_dict[rd] = [self.val]
         accept_message_list = self.accept_message_dict[rd]
         accept_message_list.add(message)
         return len(accept_message_list)
