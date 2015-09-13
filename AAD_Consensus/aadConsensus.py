@@ -75,7 +75,7 @@ class AADConesnsus():
              accept_message_list = self.accept_message_dict[rd]
              accept_message_list.sort()
              self.val = (accept_message_list[t] + accept_message_list[-t-1]) / 2.0 
-             if (self.rounds > self.maxrounds):
+             if (self.rounds >= self.maxrounds):
                  self.on_terminate(self.val)
              else:
                  self.rounds += 1
